@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'login.dart';
+import 'main_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,6 +30,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Get screen height
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -108,6 +113,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ElevatedButton(
               onPressed: () {
                 // Handle sign-up logic
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => MainScreen()),
+                );
               },
               child: Text('Sign Up'),
               style: ElevatedButton.styleFrom(
@@ -121,7 +130,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Text('Already have an account '),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => LoginPage()),
+                    );
                   },
                   child: Text(
                     'Sign in',
@@ -136,32 +148,45 @@ class _SignUpScreenState extends State<SignUpScreen> {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                IconButton(
-                  icon: Image.asset('assets/facebook_logo.png',
-                      width: 30, height: 30),
-                  onPressed: () {
-                    // Handle Facebook login
-                  },
+                        SizedBox(height: 16),
+            Container(
+            height: screenHeight * 0.1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Adds even spacing between items
+              children: [
+                Flexible(
+                  child: ClipOval(
+                    child: SizedBox(
+                      child: IconButton(
+                        icon: Image.asset('lib/images/facebook_logo.png'),
+                        onPressed: () {},
+                      ),
+                    ),
+                  ),
                 ),
-                IconButton(
-                  icon: Image.asset('assets/instagram_logo.png',
-                      width: 30, height: 30),
-                  onPressed: () {
-                    // Handle Instagram login
-                  },
+                Flexible(
+                  child: ClipOval(
+                    child: SizedBox(
+                      child: IconButton(
+                        icon: Image.asset('lib/images/instagram_logo.png'),
+                        onPressed: () {},
+                      ),
+                    ),
+                  ),
                 ),
-                IconButton(
-                  icon: Image.asset('assets/twitter_logo.png',
-                      width: 30, height: 30),
-                  onPressed: () {
-                    // Handle Twitter login
-                  },
+                Flexible(
+                  child: ClipOval(
+                    child: SizedBox(
+                      child: IconButton(
+                        icon: Image.asset('lib/images/twitter_logo.png'),
+                        onPressed: () {},
+                      ),
+                    ),
+                  ),
                 ),
               ],
-            ),
+            )
+            )
           ],
         ),
       ),
